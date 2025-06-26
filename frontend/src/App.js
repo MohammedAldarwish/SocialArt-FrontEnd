@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Feed from './components/Feed';
 import Messages from './components/Messages';
 import Chat from './components/Chat';
+import Courses from './components/Courses';
 
 const Home = () => {
   return (
@@ -27,6 +28,14 @@ const MessagesPage = () => (
 const ChatPage = () => (
   <div className="min-h-screen bg-gray-50">
     <Chat />
+  </div>
+);
+
+// Courses Page
+const CoursesPage = () => (
+  <div className="min-h-screen bg-gray-50">
+    <Navbar />
+    <Courses />
   </div>
 );
 
@@ -110,6 +119,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/courses" element={<CoursesPage />} />
           <Route path="/messages" element={<MessagesPage />} />
           <Route path="/chat/:id" element={<ChatPage />} />
           <Route path="/upload" element={<Upload />} />
