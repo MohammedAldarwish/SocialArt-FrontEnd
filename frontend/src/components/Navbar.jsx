@@ -40,6 +40,19 @@ const Navbar = () => {
                 </svg>
                 <span className="text-sm font-medium">Explore</span>
               </Link>
+
+              <Link 
+                to="/messages" 
+                className={`flex items-center space-x-2 px-3 py-2 rounded-xl transition-all relative ${
+                  isActive('/messages') || location.pathname.startsWith('/chat') ? 'bg-purple-100 text-purple-600' : 'text-gray-600 hover:text-purple-600'
+                }`}
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                </svg>
+                <span className="text-sm font-medium">Messages</span>
+                <div className="absolute -top-1 -right-1 w-5 h-5 bg-pink-500 text-white text-xs rounded-full flex items-center justify-center">2</div>
+              </Link>
               
               <Link 
                 to="/upload" 
@@ -83,7 +96,7 @@ const Navbar = () => {
         <div className="flex items-center justify-around py-2">
           <Link 
             to="/" 
-            className={`flex flex-col items-center py-2 px-4 rounded-xl transition-all ${
+            className={`flex flex-col items-center py-2 px-3 rounded-xl transition-all ${
               isActive('/') ? 'text-purple-600' : 'text-gray-500'
             }`}
           >
@@ -94,13 +107,25 @@ const Navbar = () => {
           
           <Link 
             to="/explore" 
-            className={`flex flex-col items-center py-2 px-4 rounded-xl transition-all ${
+            className={`flex flex-col items-center py-2 px-3 rounded-xl transition-all ${
               isActive('/explore') ? 'text-purple-600' : 'text-gray-500'
             }`}
           >
             <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
             </svg>
+          </Link>
+
+          <Link 
+            to="/messages" 
+            className={`flex flex-col items-center py-2 px-3 rounded-xl transition-all relative ${
+              isActive('/messages') || location.pathname.startsWith('/chat') ? 'text-purple-600' : 'text-gray-500'
+            }`}
+          >
+            <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            </svg>
+            <div className="absolute top-1 right-2 w-4 h-4 bg-pink-500 text-white text-xs rounded-full flex items-center justify-center">2</div>
           </Link>
           
           <Link 
@@ -114,19 +139,19 @@ const Navbar = () => {
           
           <Link 
             to="/notifications" 
-            className={`flex flex-col items-center py-2 px-4 rounded-xl transition-all relative ${
+            className={`flex flex-col items-center py-2 px-3 rounded-xl transition-all relative ${
               isActive('/notifications') ? 'text-purple-600' : 'text-gray-500'
             }`}
           >
             <svg className="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
               <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
             </svg>
-            <div className="absolute top-1 right-3 w-4 h-4 bg-pink-500 text-white text-xs rounded-full flex items-center justify-center">3</div>
+            <div className="absolute top-1 right-2 w-4 h-4 bg-pink-500 text-white text-xs rounded-full flex items-center justify-center">3</div>
           </Link>
           
           <Link 
             to="/profile" 
-            className={`flex flex-col items-center py-2 px-4 rounded-xl transition-all ${
+            className={`flex flex-col items-center py-2 px-3 rounded-xl transition-all ${
               isActive('/profile') ? 'text-purple-600' : 'text-gray-500'
             }`}
           >

@@ -3,6 +3,8 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from './components/Navbar';
 import Feed from './components/Feed';
+import Messages from './components/Messages';
+import Chat from './components/Chat';
 
 const Home = () => {
   return (
@@ -12,6 +14,21 @@ const Home = () => {
     </div>
   );
 };
+
+// Messages Page
+const MessagesPage = () => (
+  <div className="min-h-screen bg-gray-50">
+    <Navbar />
+    <Messages />
+  </div>
+);
+
+// Individual Chat Page
+const ChatPage = () => (
+  <div className="min-h-screen bg-gray-50">
+    <Chat />
+  </div>
+);
 
 // Placeholder components for other routes
 const Explore = () => (
@@ -93,6 +110,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/messages" element={<MessagesPage />} />
+          <Route path="/chat/:id" element={<ChatPage />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/profile" element={<Profile />} />
