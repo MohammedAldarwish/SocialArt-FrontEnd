@@ -245,7 +245,7 @@ const Navbar = () => {
 
       {/* Mobile Navbar - Bottom */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-dark-800/95 backdrop-blur-md border-t border-gray-100 dark:border-dark-700 transition-colors duration-200">
-        <div className="grid grid-cols-5 gap-1 py-2 px-2">
+        <div className="grid grid-cols-4 gap-1 py-2 px-2">
           <Link
             to="/"
             className={`flex flex-col items-center py-2 px-1 rounded-xl transition-all ${
@@ -313,36 +313,9 @@ const Navbar = () => {
           </Link>
 
           <Link
-            to="/messages"
-            className={`flex flex-col items-center py-2 px-1 rounded-xl transition-all relative ${
-              isActive("/messages") || location.pathname.startsWith("/chat")
-                ? "text-purple-600 dark:text-purple-400"
-                : "text-gray-500 dark:text-gray-400"
-            }`}
-          >
-            <svg
-              className="w-6 h-6 mb-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-              />
-            </svg>
-            <span className="text-xs">Messages</span>
-            <div className="absolute top-1 right-1 w-4 h-4 bg-pink-500 text-white text-xs rounded-full flex items-center justify-center">
-              2
-            </div>
-          </Link>
-
-          <Link
-            to="/profile"
+            to="/upload"
             className={`flex flex-col items-center py-2 px-1 rounded-xl transition-all ${
-              isActive("/profile")
+              isActive("/upload")
                 ? "text-purple-600 dark:text-purple-400"
                 : "text-gray-500 dark:text-gray-400"
             }`}
@@ -357,10 +330,10 @@ const Navbar = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                d="M12 4v16m8-8H4"
               />
             </svg>
-            <span className="text-xs">Profile</span>
+            <span className="text-xs">Upload</span>
           </Link>
         </div>
 
