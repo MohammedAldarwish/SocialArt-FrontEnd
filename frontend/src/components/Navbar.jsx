@@ -188,6 +188,61 @@ const Navbar = () => {
         </div>
       </nav>
 
+      {/* Mobile Floating Buttons - Top Right */}
+      <div className="md:hidden fixed top-4 right-4 z-50 flex items-center space-x-3">
+        {/* Messages Button */}
+        <Link
+          to="/messages"
+          className={`flex items-center justify-center w-12 h-12 rounded-full bg-white/80 dark:bg-dark-800/80 backdrop-blur-md shadow-lg border border-gray-100 dark:border-dark-700 transition-all ${
+            isActive("/messages") || location.pathname.startsWith("/chat")
+              ? "text-purple-600 dark:text-purple-400 bg-purple-50/80 dark:bg-purple-900/30"
+              : "text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400"
+          } relative`}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+            />
+          </svg>
+          {/* Message notification badge */}
+          <div className="absolute -top-1 -right-1 w-5 h-5 bg-pink-500 text-white text-xs rounded-full flex items-center justify-center">
+            2
+          </div>
+        </Link>
+
+        {/* Profile Button */}
+        <Link
+          to="/profile"
+          className={`flex items-center justify-center w-12 h-12 rounded-full bg-white/80 dark:bg-dark-800/80 backdrop-blur-md shadow-lg border border-gray-100 dark:border-dark-700 transition-all ${
+            isActive("/profile")
+              ? "text-purple-600 dark:text-purple-400 bg-purple-50/80 dark:bg-purple-900/30"
+              : "text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400"
+          }`}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            />
+          </svg>
+        </Link>
+      </div>
+
       {/* Mobile Navbar - Bottom */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-dark-800/95 backdrop-blur-md border-t border-gray-100 dark:border-dark-700 transition-colors duration-200">
         <div className="grid grid-cols-5 gap-1 py-2 px-2">
