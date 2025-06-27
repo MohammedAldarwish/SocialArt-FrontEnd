@@ -2,634 +2,238 @@ import React, { useState } from "react";
 import { useTheme } from "./ThemeContext";
 
 const Profile = () => {
-  const [activeTab, setActiveTab] = useState("profile");
-  const { mode, setTheme, THEME_MODES, isDark } = useTheme();
+  const { isDark } = useTheme();
 
-  // Settings state
-  const [notifications, setNotifications] = useState({
-    likes: true,
-    comments: true,
-    messages: true,
-    courses: false,
-    marketing: false,
-  });
-  const [privacy, setPrivacy] = useState({
-    profilePublic: true,
-    showEmail: false,
-    allowMessages: true,
-    showOnline: true,
-  });
-
-  const tabs = [
+  // Sample user posts data
+  const userPosts = [
     {
-      id: "profile",
-      name: "Profile",
-      icon: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z",
+      id: 1,
+      image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500",
+      title: "Watercolor Dreams",
+      likes: 234,
+      comments: 18,
     },
     {
-      id: "account",
-      name: "Account",
-      icon: "M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+      id: 2,
+      image: "https://images.unsplash.com/photo-1578662996442-048c49d68a2a?w=500",
+      title: "Digital Portrait",
+      likes: 189,
+      comments: 12,
     },
     {
-      id: "notifications",
-      name: "Notifications",
-      icon: "M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9",
+      id: 3,
+      image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500",
+      title: "Abstract Colors",
+      likes: 156,
+      comments: 8,
     },
     {
-      id: "privacy",
-      name: "Privacy",
-      icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z",
+      id: 4,
+      image: "https://images.unsplash.com/photo-1578662996442-048c49d68a2a?w=500",
+      title: "Nature Study",
+      likes: 203,
+      comments: 15,
     },
     {
-      id: "appearance",
-      name: "Appearance",
-      icon: "M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4 4 4 0 004-4V5z",
+      id: 5,
+      image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500",
+      title: "Sunset Landscape",
+      likes: 178,
+      comments: 9,
     },
     {
-      id: "support",
-      name: "Support",
-      icon: "M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+      id: 6,
+      image: "https://images.unsplash.com/photo-1578662996442-048c49d68a2a?w=500",
+      title: "Character Design",
+      likes: 267,
+      comments: 22,
+    },
+    {
+      id: 7,
+      image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=500",
+      title: "Urban Sketches",
+      likes: 145,
+      comments: 6,
+    },
+    {
+      id: 8,
+      image: "https://images.unsplash.com/photo-1578662996442-048c49d68a2a?w=500",
+      title: "Mixed Media Art",
+      likes: 198,
+      comments: 13,
     },
   ];
 
-  const handleNotificationChange = (key) => {
-    setNotifications((prev) => ({ ...prev, [key]: !prev[key] }));
-  };
-
-  const handlePrivacyChange = (key) => {
-    setPrivacy((prev) => ({ ...prev, [key]: !prev[key] }));
-  };
-
-  const handleThemeChange = (newTheme) => {
-    setTheme(newTheme);
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-900 transition-colors duration-200 pt-20 md:pt-24 pb-24 md:pb-8">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
-            Profile & Settings
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300">
-            Manage your profile and account preferences
-          </p>
+      {/* Floating Settings Button */}
+      <button className="fixed top-4 right-4 md:top-8 md:right-8 z-50 w-12 h-12 bg-white/90 dark:bg-dark-800/90 backdrop-blur-md shadow-lg border border-gray-100 dark:border-dark-700 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-white dark:hover:bg-dark-800 transition-all">
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+          />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+          />
+        </svg>
+      </button>
+
+      <div className="max-w-4xl mx-auto px-4">
+        {/* Profile Header */}
+        <div className="bg-white dark:bg-dark-800 rounded-2xl shadow-sm border border-gray-100 dark:border-dark-700 p-6 md:p-8 mb-8">
+          <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
+            {/* Profile Picture */}
+            <div className="relative flex-shrink-0">
+              <img
+                src="https://images.unsplash.com/photo-1695927521717-a0ad39d93505"
+                alt="Profile"
+                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-white dark:border-dark-700 shadow-lg"
+              />
+              <button className="absolute bottom-2 right-2 w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-white shadow-lg hover:from-purple-700 hover:to-pink-700 transition-all">
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* Profile Info */}
+            <div className="flex-1 text-center md:text-left">
+              {/* Name and Username */}
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                Alex Johnson
+              </h1>
+              <p className="text-lg text-purple-600 dark:text-purple-400 mb-4">
+                @alex_artist
+              </p>
+
+              {/* Bio */}
+              <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl">
+                Passionate artist exploring watercolor and digital art. Always learning and sharing the creative journey. Love experimenting with colors and bringing imagination to life.
+              </p>
+
+              {/* Stats */}
+              <div className="flex flex-wrap gap-8 justify-center md:justify-start">
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                    127
+                  </div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                    Posts
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                    2.4K
+                  </div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                    Followers
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+                    1.2K
+                  </div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                    Following
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-3 justify-center md:justify-start mt-6">
+                <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2.5 rounded-xl font-medium hover:from-purple-700 hover:to-pink-700 transition-all flex items-center space-x-2">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                  <span>Edit Profile</span>
+                </button>
+                <button className="bg-white dark:bg-dark-700 border border-gray-200 dark:border-dark-600 text-gray-700 dark:text-gray-300 px-6 py-2.5 rounded-xl font-medium hover:bg-gray-50 dark:hover:bg-dark-600 transition-all">
+                  Share Profile
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Sidebar */}
-          <div className="lg:w-64 flex-shrink-0">
-            <div className="bg-white dark:bg-dark-800 rounded-2xl shadow-sm border border-gray-100 dark:border-dark-700 p-2">
-              <nav className="space-y-1">
-                {tabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all ${
-                      activeTab === tab.id
-                        ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white"
-                        : "text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-dark-700"
-                    }`}
-                  >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d={tab.icon}
-                      />
-                    </svg>
-                    <span className="font-medium">{tab.name}</span>
-                  </button>
-                ))}
-              </nav>
+        {/* Posts Section */}
+        <div className="bg-white dark:bg-dark-800 rounded-2xl shadow-sm border border-gray-100 dark:border-dark-700 p-6 md:p-8">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+              My Posts
+            </h2>
+            <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14-2l-4-4m0 8l4-4" />
+              </svg>
+              <span>Latest first</span>
             </div>
           </div>
 
-          {/* Main Content */}
-          <div className="flex-1">
-            <div className="bg-white dark:bg-dark-800 rounded-2xl shadow-sm border border-gray-100 dark:border-dark-700">
-              {/* Profile Tab */}
-              {activeTab === "profile" && (
-                <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    Profile
-                  </h2>
-
-                  {/* Profile Header */}
-                  <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6 mb-8">
-                    <div className="relative">
-                      <img
-                        src="https://images.unsplash.com/photo-1695927521717-a0ad39d93505"
-                        alt="Profile"
-                        className="w-32 h-32 rounded-full object-cover border-4 border-white dark:border-dark-700 shadow-lg"
-                      />
-                      <button className="absolute bottom-2 right-2 w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-white shadow-lg hover:from-purple-700 hover:to-pink-700 transition-all">
-                        <svg
-                          className="w-5 h-5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-                          />
+          {/* Posts Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {userPosts.map((post) => (
+              <div
+                key={post.id}
+                className="group relative bg-gray-50 dark:bg-dark-700 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer"
+              >
+                <div className="aspect-square">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                
+                {/* Post Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                    <h3 className="font-semibold mb-2 truncate">{post.title}</h3>
+                    <div className="flex items-center space-x-4 text-sm">
+                      <div className="flex items-center space-x-1">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                         </svg>
-                      </button>
-                    </div>
-
-                    <div className="flex-1 text-center md:text-left">
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                        Alex Johnson
-                      </h3>
-                      <p className="text-purple-600 dark:text-purple-400 mb-3">
-                        @alex_artist
-                      </p>
-                      <p className="text-gray-600 dark:text-gray-300 mb-4">
-                        Passionate artist exploring watercolor and digital art.
-                        Always learning and sharing the creative journey.
-                      </p>
-
-                      <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                        <div className="text-center">
-                          <div className="text-xl font-bold text-gray-900 dark:text-white">
-                            127
-                          </div>
-                          <div className="text-sm text-gray-500 dark:text-gray-400">
-                            Posts
-                          </div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-xl font-bold text-gray-900 dark:text-white">
-                            2.4K
-                          </div>
-                          <div className="text-sm text-gray-500 dark:text-gray-400">
-                            Followers
-                          </div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-xl font-bold text-gray-900 dark:text-white">
-                            1.2K
-                          </div>
-                          <div className="text-sm text-gray-500 dark:text-gray-400">
-                            Following
-                          </div>
-                        </div>
+                        <span>{post.likes}</span>
                       </div>
-                    </div>
-                  </div>
-
-                  {/* Recent Activity */}
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                      Recent Activity
-                    </h4>
-                    <div className="space-y-3">
-                      {[
-                        {
-                          action: "Posted new artwork",
-                          item: "Watercolor Dreams",
-                          time: "2 hours ago",
-                        },
-                        {
-                          action: "Liked a post by",
-                          item: "Emma Chen",
-                          time: "4 hours ago",
-                        },
-                        {
-                          action: "Started following",
-                          item: "Marcus Rodriguez",
-                          time: "1 day ago",
-                        },
-                        {
-                          action: "Completed course",
-                          item: "Advanced Watercolor Techniques",
-                          time: "2 days ago",
-                        },
-                      ].map((activity, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-dark-700 rounded-lg"
-                        >
-                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                          <div className="flex-1">
-                            <span className="text-gray-900 dark:text-white">
-                              {activity.action}{" "}
-                            </span>
-                            <span className="font-medium text-purple-600 dark:text-purple-400">
-                              {activity.item}
-                            </span>
-                          </div>
-                          <span className="text-sm text-gray-500 dark:text-gray-400">
-                            {activity.time}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Account Settings */}
-              {activeTab === "account" && (
-                <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    Account Settings
-                  </h2>
-
-                  <div className="space-y-6">
-                    {/* Profile Information */}
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                        Profile Information
-                      </h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Full Name
-                          </label>
-                          <input
-                            type="text"
-                            defaultValue="Alex Johnson"
-                            className="w-full px-4 py-3 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Username
-                          </label>
-                          <input
-                            type="text"
-                            defaultValue="@alex_artist"
-                            className="w-full px-4 py-3 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
-                          />
-                        </div>
-                        <div className="md:col-span-2">
-                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Email
-                          </label>
-                          <input
-                            type="email"
-                            defaultValue="alex@example.com"
-                            className="w-full px-4 py-3 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
-                          />
-                        </div>
-                        <div className="md:col-span-2">
-                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Bio
-                          </label>
-                          <textarea
-                            rows={3}
-                            defaultValue="Passionate artist exploring watercolor and digital art. Always learning and sharing the creative journey."
-                            className="w-full px-4 py-3 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Password */}
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                        Password
-                      </h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Current Password
-                          </label>
-                          <input
-                            type="password"
-                            className="w-full px-4 py-3 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            New Password
-                          </label>
-                          <input
-                            type="password"
-                            className="w-full px-4 py-3 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Save Button */}
-                    <div className="flex justify-end pt-4">
-                      <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-medium hover:from-purple-700 hover:to-pink-700 transition-all">
-                        Save Changes
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Notifications */}
-              {activeTab === "notifications" && (
-                <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    Notification Preferences
-                  </h2>
-
-                  <div className="space-y-6">
-                    {Object.entries(notifications).map(([key, value]) => (
-                      <div
-                        key={key}
-                        className="flex items-center justify-between py-3 border-b border-gray-100 dark:border-dark-700"
-                      >
-                        <div>
-                          <h3 className="text-base font-medium text-gray-900 dark:text-white capitalize">
-                            {key === "marketing" ? "Marketing Emails" : key}
-                          </h3>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">
-                            {key === "likes" &&
-                              "Get notified when someone likes your artwork"}
-                            {key === "comments" &&
-                              "Get notified when someone comments on your posts"}
-                            {key === "messages" &&
-                              "Get notified about new messages"}
-                            {key === "courses" &&
-                              "Get notified about new courses and updates"}
-                            {key === "marketing" &&
-                              "Receive emails about new features and promotions"}
-                          </p>
-                        </div>
-                        <button
-                          onClick={() => handleNotificationChange(key)}
-                          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                            value
-                              ? "bg-gradient-to-r from-purple-600 to-pink-600"
-                              : "bg-gray-200 dark:bg-dark-600"
-                          }`}
-                        >
-                          <span
-                            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                              value ? "translate-x-6" : "translate-x-1"
-                            }`}
-                          />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Privacy */}
-              {activeTab === "privacy" && (
-                <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    Privacy Settings
-                  </h2>
-
-                  <div className="space-y-6">
-                    {Object.entries(privacy).map(([key, value]) => (
-                      <div
-                        key={key}
-                        className="flex items-center justify-between py-3 border-b border-gray-100 dark:border-dark-700"
-                      >
-                        <div>
-                          <h3 className="text-base font-medium text-gray-900 dark:text-white">
-                            {key === "profilePublic" && "Public Profile"}
-                            {key === "showEmail" && "Show Email"}
-                            {key === "allowMessages" && "Allow Messages"}
-                            {key === "showOnline" && "Show Online Status"}
-                          </h3>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">
-                            {key === "profilePublic" &&
-                              "Make your profile visible to everyone"}
-                            {key === "showEmail" &&
-                              "Display your email address on your profile"}
-                            {key === "allowMessages" &&
-                              "Allow other users to send you messages"}
-                            {key === "showOnline" &&
-                              "Show when you are online to other users"}
-                          </p>
-                        </div>
-                        <button
-                          onClick={() => handlePrivacyChange(key)}
-                          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                            value
-                              ? "bg-gradient-to-r from-purple-600 to-pink-600"
-                              : "bg-gray-200 dark:bg-dark-600"
-                          }`}
-                        >
-                          <span
-                            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                              value ? "translate-x-6" : "translate-x-1"
-                            }`}
-                          />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Appearance */}
-              {activeTab === "appearance" && (
-                <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    Appearance
-                  </h2>
-
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                        Theme
-                      </h3>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        {[
-                          {
-                            key: THEME_MODES.LIGHT,
-                            label: "Light",
-                            description: "Light theme for bright environments",
-                          },
-                          {
-                            key: THEME_MODES.DARK,
-                            label: "Dark",
-                            description: "Dark theme for low-light conditions",
-                          },
-                          {
-                            key: THEME_MODES.AUTO,
-                            label: "Auto",
-                            description: "Follows your system preference",
-                          },
-                        ].map((theme) => (
-                          <button
-                            key={theme.key}
-                            onClick={() => handleThemeChange(theme.key)}
-                            className={`p-4 border-2 rounded-xl hover:border-purple-500 transition-colors text-left ${
-                              mode === theme.key
-                                ? "border-purple-500 bg-purple-50 dark:bg-purple-900/20"
-                                : "border-gray-200 dark:border-dark-600 hover:bg-gray-50 dark:hover:bg-dark-700"
-                            }`}
-                          >
-                            <div className="flex items-center space-x-3 mb-2">
-                              <div
-                                className={`w-8 h-6 rounded ${
-                                  theme.key === THEME_MODES.LIGHT
-                                    ? "bg-white border border-gray-300"
-                                    : theme.key === THEME_MODES.DARK
-                                    ? "bg-gray-800 border border-gray-600"
-                                    : "bg-gradient-to-r from-white via-gray-300 to-gray-800"
-                                }`}
-                              ></div>
-                              <span className="font-medium text-gray-900 dark:text-white">
-                                {theme.label}
-                              </span>
-                              {mode === theme.key && (
-                                <svg
-                                  className="w-5 h-5 text-purple-600"
-                                  fill="currentColor"
-                                  viewBox="0 0 20 20"
-                                >
-                                  <path
-                                    fillRule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clipRule="evenodd"
-                                  />
-                                </svg>
-                              )}
-                            </div>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">
-                              {theme.description}
-                            </p>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                        Language
-                      </h3>
-                      <select className="w-full px-4 py-3 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors">
-                        <option>English</option>
-                        <option>Spanish</option>
-                        <option>French</option>
-                        <option>German</option>
-                        <option>Japanese</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Support */}
-              {activeTab === "support" && (
-                <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    Help & Support
-                  </h2>
-
-                  <div className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <a
-                        href="#"
-                        className="p-6 border border-gray-200 dark:border-dark-600 rounded-xl hover:border-purple-500 transition-colors group bg-white dark:bg-dark-700"
-                      >
-                        <div className="flex items-center space-x-3 mb-3">
-                          <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center group-hover:bg-purple-200 dark:group-hover:bg-purple-900/50 transition-colors">
-                            <svg
-                              className="w-5 h-5 text-purple-600 dark:text-purple-400"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                              />
-                            </svg>
-                          </div>
-                          <h3 className="font-semibold text-gray-900 dark:text-white">
-                            Help Center
-                          </h3>
-                        </div>
-                        <p className="text-gray-600 dark:text-gray-300">
-                          Find answers to common questions and tutorials
-                        </p>
-                      </a>
-
-                      <a
-                        href="#"
-                        className="p-6 border border-gray-200 dark:border-dark-600 rounded-xl hover:border-purple-500 transition-colors group bg-white dark:bg-dark-700"
-                      >
-                        <div className="flex items-center space-x-3 mb-3">
-                          <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center group-hover:bg-purple-200 dark:group-hover:bg-purple-900/50 transition-colors">
-                            <svg
-                              className="w-5 h-5 text-purple-600 dark:text-purple-400"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                              />
-                            </svg>
-                          </div>
-                          <h3 className="font-semibold text-gray-900 dark:text-white">
-                            Contact Support
-                          </h3>
-                        </div>
-                        <p className="text-gray-600 dark:text-gray-300">
-                          Get in touch with our support team
-                        </p>
-                      </a>
-                    </div>
-
-                    <div className="border-t border-gray-200 dark:border-dark-700 pt-6">
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                        App Information
-                      </h3>
-                      <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300">
-                        <div className="flex justify-between">
-                          <span>Version</span>
-                          <span>2.1.0</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Last Updated</span>
-                          <span>December 2024</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Terms of Service</span>
-                          <a
-                            href="#"
-                            className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300"
-                          >
-                            View
-                          </a>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Privacy Policy</span>
-                          <a
-                            href="#"
-                            className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300"
-                          >
-                            View
-                          </a>
-                        </div>
+                      <div className="flex items-center space-x-1">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                        <span>{post.comments}</span>
                       </div>
                     </div>
                   </div>
                 </div>
-              )}
-            </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Load More Button */}
+          <div className="text-center mt-8">
+            <button className="bg-gray-100 dark:bg-dark-700 text-gray-700 dark:text-gray-300 px-8 py-3 rounded-xl font-medium hover:bg-gray-200 dark:hover:bg-dark-600 transition-all">
+              Load More Posts
+            </button>
           </div>
         </div>
       </div>
