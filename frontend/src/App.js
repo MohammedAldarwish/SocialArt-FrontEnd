@@ -6,6 +6,9 @@ import Feed from './components/Feed';
 import Messages from './components/Messages';
 import Chat from './components/Chat';
 import Courses from './components/Courses';
+import Settings from './components/Settings';
+import AdminLogin from './components/AdminLogin';
+import AdminPanel from './components/AdminPanel';
 
 const Home = () => {
   return (
@@ -36,6 +39,14 @@ const CoursesPage = () => (
   <div className="min-h-screen bg-gray-50">
     <Navbar />
     <Courses />
+  </div>
+);
+
+// Settings Page
+const SettingsPage = () => (
+  <div className="min-h-screen bg-gray-50">
+    <Navbar />
+    <Settings />
   </div>
 );
 
@@ -82,12 +93,12 @@ const Notifications = () => (
     <div className="flex items-center justify-center pt-32 pb-24">
       <div className="text-center">
         <div className="w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"/>
+          <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
           </svg>
         </div>
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Notifications</h1>
-        <p className="text-gray-600">Stay updated with likes, comments and follows</p>
+        <p className="text-gray-600">Stay updated with latest activity</p>
         <p className="text-sm text-purple-600 mt-4">Coming soon...</p>
       </div>
     </div>
@@ -124,7 +135,10 @@ function App() {
           <Route path="/chat/:id" element={<ChatPage />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/notifications" element={<Notifications />} />
+          <Route path="/settings" element={<SettingsPage />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminPanel />} />
         </Routes>
       </BrowserRouter>
     </div>
