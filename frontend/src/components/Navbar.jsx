@@ -337,59 +337,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Mobile Secondary Navigation */}
-        <div className="grid grid-cols-3 gap-1 py-1 px-2 border-t border-gray-200 dark:border-dark-700">
-          <Link
-            to="/notifications"
-            className={`flex flex-col items-center py-1 px-1 rounded-lg transition-all relative ${
-              isActive("/notifications")
-                ? "text-purple-600 dark:text-purple-400"
-                : "text-gray-500 dark:text-gray-400"
-            }`}
-          >
-            <svg
-              className="w-5 h-5 mb-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-              />
-            </svg>
-            <span className="text-xs">Alerts</span>
-            <div className="absolute top-0 right-1 w-3 h-3 bg-pink-500 text-white text-xs rounded-full flex items-center justify-center">
-              5
-            </div>
-          </Link>
-
-          <div className="flex flex-col items-center py-1 px-1 rounded-lg transition-all">
-            {/* Empty space where Settings used to be */}
-          </div>
-
-          <Link
-            to="/upload"
-            className="flex flex-col items-center py-1 px-1 rounded-lg transition-all text-purple-600 dark:text-purple-400"
-          >
-            <svg
-              className="w-5 h-5 mb-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 4v16m8-8H4"
-              />
-            </svg>
-            <span className="text-xs">Upload</span>
-          </Link>
-        </div>
       </nav>
     </>
   );
