@@ -245,7 +245,7 @@ const Navbar = () => {
 
       {/* Mobile Navbar - Bottom */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 dark:bg-dark-800/95 backdrop-blur-md border-t border-gray-100 dark:border-dark-700 transition-colors duration-200">
-        <div className="grid grid-cols-4 gap-1 py-2 px-2">
+        <div className="grid grid-cols-5 gap-1 py-2 px-2">
           <Link
             to="/"
             className={`flex flex-col items-center py-2 px-1 rounded-xl transition-all ${
