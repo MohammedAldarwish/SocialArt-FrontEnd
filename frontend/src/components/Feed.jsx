@@ -205,12 +205,23 @@ const Feed = () => {
   return (
     <div className="max-w-lg mx-auto pt-20 md:pt-24 pb-20 md:pb-8 px-4">
       {/* Mobile Logo - Only visible on small screens */}
-      <div className="md:hidden flex justify-center mb-6 pt-2">
-        <img
-          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMjAiIGZpbGw9InVybCgjZ3JhZGllbnQpIi8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50IiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6I2ZmNjMzODtzdG9wLW9wYWNpdHk6MSIgLz4KPHN0b3Agb2Zmc2V0PSI1MCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmZjkzMzg7c3RvcC1vcGFjaXR5OjEiIC8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6Izg2NGRmZjtzdG9wLW9wYWNpdHk6MSIgLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8dGV4dCB4PSI1MCIgeT0iNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzNiIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIj5BPC90ZXh0Pgo8L3N2Zz4="
-          alt="ArtConnect Logo"
-          className="h-12 w-auto drop-shadow-lg"
-        />
+      <div className="md:hidden flex justify-center mb-8 pt-4">
+        <div className="relative group">
+          {/* For now using a CSS-based logo, replace with your actual logo when uploaded */}
+          <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
+            <div className="h-12 w-12 bg-white rounded-xl flex items-center justify-center">
+              <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">A</span>
+            </div>
+          </div>
+          {/* Uncomment this when you upload your logo image:
+          <img
+            src="/logo.png"
+            alt="ArtConnect Logo"
+            className="h-16 w-16 object-contain drop-shadow-xl group-hover:scale-105 transition-transform duration-300"
+          />
+          */}
+          <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-md"></div>
+        </div>
       </div>
 
       {/* Stories Section */}
