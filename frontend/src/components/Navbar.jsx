@@ -15,13 +15,26 @@ const Navbar = () => {
             {/* Logo - Desktop/Tablet */}
             <Link
               to="/"
-              className="flex items-center"
+              className="flex items-center group"
             >
-              <img
-                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMjAiIGZpbGw9InVybCgjZ3JhZGllbnQpIi8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50IiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6I2ZmNjMzODtzdG9wLW9wYWNpdHk6MSIgLz4KPHN0b3Agb2Zmc2V0PSI1MCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmZjkzMzg7c3RvcC1vcGFjaXR5OjEiIC8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6Izg2NGRmZjtzdG9wLW9wYWNpdHk6MSIgLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8dGV4dCB4PSI1MCIgeT0iNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIzNiIgZm9udC13ZWlnaHQ9ImJvbGQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIj5BPC90ZXh0Pgo8L3N2Zz4="
-                alt="ArtConnect Logo"
-                className="h-8 w-auto md:h-10 lg:h-12"
-              />
+              <div className="relative">
+                {/* For now using a CSS-based logo, replace src with "/logo.png" when you upload your image */}
+                <div className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 rounded-xl bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <div className="h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 bg-white rounded-lg flex items-center justify-center">
+                    <span className="text-sm md:text-base lg:text-lg font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">A</span>
+                  </div>
+                </div>
+                {/* Uncomment this when you upload your logo image:
+                <img
+                  src="/logo.png"
+                  alt="ArtConnect Logo"
+                  className="h-8 w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 object-contain group-hover:scale-105 transition-transform duration-300"
+                />
+                */}
+              </div>
+              <span className="ml-3 text-lg md:text-xl lg:text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent group-hover:from-purple-700 group-hover:to-pink-700 transition-all duration-300">
+                ArtConnect
+              </span>
             </Link>
 
             <div className="flex items-center space-x-6">
