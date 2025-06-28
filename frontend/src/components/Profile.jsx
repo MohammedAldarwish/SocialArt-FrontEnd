@@ -73,8 +73,8 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-900 transition-colors duration-300">
-      {/* Floating Settings Button - Positioned to avoid navbar collision */}
-      <button className="fixed top-20 right-4 sm:top-24 sm:right-6 md:top-28 md:right-8 lg:top-32 lg:right-10 z-40 w-11 h-11 sm:w-12 sm:h-12 bg-white/95 dark:bg-dark-800/95 backdrop-blur-md shadow-xl border border-gray-200/50 dark:border-dark-600/50 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-white dark:hover:bg-dark-800 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+      {/* Floating Settings Button - Hidden on mobile when on profile page, show on desktop */}
+      <button className="hidden md:block fixed top-20 right-4 sm:top-24 sm:right-6 md:top-28 md:right-8 lg:top-32 lg:right-10 z-40 w-11 h-11 sm:w-12 sm:h-12 bg-white/95 dark:bg-dark-800/95 backdrop-blur-md shadow-xl border border-gray-200/50 dark:border-dark-600/50 rounded-full flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-white dark:hover:bg-dark-800 hover:shadow-2xl hover:scale-105 transition-all duration-300">
         <svg
           className="w-5 h-5 sm:w-6 sm:h-6"
           fill="none"
