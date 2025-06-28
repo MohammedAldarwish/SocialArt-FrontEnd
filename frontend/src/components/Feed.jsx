@@ -204,26 +204,6 @@ const Feed = () => {
 
   return (
     <div className="max-w-lg mx-auto pt-20 md:pt-24 pb-20 md:pb-8 px-4">
-      {/* Mobile Logo - Only visible on small screens */}
-      <div className="md:hidden flex justify-center mb-8 pt-4">
-        <div className="relative group">
-          {/* For now using a CSS-based logo, replace with your actual logo when uploaded */}
-          <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 group-hover:scale-105">
-            <div className="h-12 w-12 bg-white rounded-xl flex items-center justify-center">
-              <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">A</span>
-            </div>
-          </div>
-          {/* Uncomment this when you upload your logo image:
-          <img
-            src="/logo.png"
-            alt="ArtConnect Logo"
-            className="h-16 w-16 object-contain drop-shadow-xl group-hover:scale-105 transition-transform duration-300"
-          />
-          */}
-          <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-md"></div>
-        </div>
-      </div>
-
       {/* Stories Section */}
       <div className="mb-6">
         <div className="flex space-x-4 overflow-x-auto pb-2">
