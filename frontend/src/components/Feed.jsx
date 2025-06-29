@@ -285,11 +285,9 @@ const Feed = () => {
         ))}
       </div>
 
-      {/* Load More */}
-      <div className="text-center mt-8">
-        <button className="bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/30 dark:to-pink-900/30 text-purple-600 dark:text-purple-400 px-6 py-3 rounded-xl font-medium hover:from-purple-200 hover:to-pink-200 dark:hover:from-purple-900/50 dark:hover:to-pink-900/50 transition-all">
-          Load More Posts
-        </button>
+      {/* Flexible space for future expansion */}
+      <div className="mt-8">
+        {/* Space reserved for future features like auto-loading or infinite scroll */}
       </div>
     </div>
   );
