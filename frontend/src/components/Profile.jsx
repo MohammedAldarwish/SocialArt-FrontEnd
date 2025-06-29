@@ -6,15 +6,10 @@ import Register from "./Register";
 
 const Profile = () => {
   const { isDark, theme, setTheme } = useTheme();
+  const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [showLogin, setShowLogin] = useState(true);
-  const [showSettings, setShowSettings] = useState(false);
-  const [settings, setSettings] = useState({
-    theme: theme || "auto",
-    privacy: "public",
-    notifications: true,
-  });
 
   // Check if user is logged in on component mount
   useEffect(() => {
