@@ -149,16 +149,16 @@ const Settings = () => {
               {/* Notifications */}
               {activeTab === 'notifications' && (
                 <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Notification Preferences</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Notification Preferences</h2>
                   
                   <div className="space-y-6">
                     {Object.entries(notifications).map(([key, value]) => (
-                      <div key={key} className="flex items-center justify-between py-3 border-b border-gray-100">
+                      <div key={key} className="flex items-center justify-between py-3 border-b border-gray-100 dark:border-dark-600">
                         <div>
-                          <h3 className="text-base font-medium text-gray-900 capitalize">
+                          <h3 className="text-base font-medium text-gray-900 dark:text-white capitalize">
                             {key === 'marketing' ? 'Marketing Emails' : key}
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
                             {key === 'likes' && 'Get notified when someone likes your artwork'}
                             {key === 'comments' && 'Get notified when someone comments on your posts'}
                             {key === 'messages' && 'Get notified about new messages'}
