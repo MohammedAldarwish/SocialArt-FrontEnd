@@ -353,7 +353,7 @@ const Explore = () => {
       <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2 md:hidden">
             Explore
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
