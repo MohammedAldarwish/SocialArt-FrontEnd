@@ -104,6 +104,52 @@
 
 user_problem_statement: "Make UI/UX changes to social platform for artists: 1) Home Page - Remove 'Load More Posts' button entirely, keep layout flexible. 2) Explore Page - Remove category filters, hide 'Explore' word on large screens, reduce post card sizes (3-4 per row on mobile). 3) Profile Page - Change Settings button to open dedicated settings page instead of modal. 4) Responsive Design - Improve responsiveness across screen sizes."
 
+backend:
+  - task: "Basic API connectivity"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "testing"
+          comment: "Testing basic API connectivity to /api/ endpoint"
+        - working: true
+          agent: "testing"
+          comment: "Successfully connected to /api/ endpoint. Received 200 status code with expected 'Hello World' message."
+
+  - task: "Status check endpoints"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "testing"
+          comment: "Testing GET and POST /api/status endpoints"
+        - working: true
+          agent: "testing"
+          comment: "Successfully tested POST /api/status with client_name data. Received 200 status code with expected response including id, client_name, and timestamp. Also successfully tested GET /api/status which returned a list of status checks."
+
+  - task: "MongoDB connection"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "testing"
+          comment: "Testing MongoDB connection through API endpoints"
+        - working: true
+          agent: "testing"
+          comment: "MongoDB connection is working correctly. Successfully stored and retrieved data through the /api/status endpoints, which confirms the database connection is functioning properly."
+
 frontend:
   - task: "Remove Load More Posts button from Home Page"
     implemented: true
