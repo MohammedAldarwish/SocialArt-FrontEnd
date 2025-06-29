@@ -73,43 +73,43 @@ const Settings = () => {
               {/* Account Settings */}
               {activeTab === 'account' && (
                 <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Account Settings</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Account Settings</h2>
                   
                   <div className="space-y-6">
                     {/* Profile Information */}
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Profile Information</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Profile Information</h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
                           <input 
                             type="text" 
                             defaultValue="Alex Johnson"
-                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="w-full px-4 py-3 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Username</label>
                           <input 
                             type="text" 
                             defaultValue="@alex_artist"
-                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="w-full px-4 py-3 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                           />
                         </div>
                         <div className="md:col-span-2">
-                          <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
                           <input 
                             type="email" 
                             defaultValue="alex@example.com"
-                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="w-full px-4 py-3 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                           />
                         </div>
                         <div className="md:col-span-2">
-                          <label className="block text-sm font-medium text-gray-700 mb-2">Bio</label>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Bio</label>
                           <textarea 
                             rows={3}
                             defaultValue="Passionate artist exploring watercolor and digital art. Always learning and sharing the creative journey."
-                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="w-full px-4 py-3 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                           />
                         </div>
                       </div>
@@ -117,20 +117,20 @@ const Settings = () => {
 
                     {/* Password */}
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Password</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Password</h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">Current Password</label>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Current Password</label>
                           <input 
                             type="password" 
-                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="w-full px-4 py-3 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+                          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">New Password</label>
                           <input 
                             type="password" 
-                            className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            className="w-full px-4 py-3 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                           />
                         </div>
                       </div>
