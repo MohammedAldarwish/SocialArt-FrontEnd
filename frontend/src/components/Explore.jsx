@@ -579,19 +579,19 @@ const Explore = () => {
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-center">
-                      <div className="flex items-center justify-center space-x-4 mb-2">
+                      <div className="flex items-center justify-center space-x-2 sm:space-x-4 mb-1 sm:mb-2">
                         <div className="flex items-center space-x-1">
                           <svg
-                            className="w-5 h-5"
+                            className="w-3 h-3 sm:w-5 sm:h-5"
                             fill="currentColor"
                             viewBox="0 0 24 24"
                           >
                             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                           </svg>
-                          <span className="font-medium">{post.likes}</span>
+                          <span className="font-medium text-xs sm:text-sm">{post.likes}</span>
                         </div>
                       </div>
-                      <p className="text-sm font-medium">{post.title}</p>
+                      <p className="text-xs sm:text-sm font-medium hidden sm:block">{post.title}</p>
                     </div>
                   </div>
                 </div>
