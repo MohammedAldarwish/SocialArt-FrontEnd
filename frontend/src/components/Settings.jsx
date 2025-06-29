@@ -227,23 +227,23 @@ const Settings = () => {
               {/* Appearance */}
               {activeTab === 'appearance' && (
                 <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Appearance</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Appearance</h2>
                   
                   <div className="space-y-6">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Theme</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Theme</h3>
                       <div className="grid grid-cols-3 gap-4">
                         {['Light', 'Dark', 'Auto'].map((theme) => (
                           <button 
                             key={theme}
-                            className="p-4 border-2 border-gray-200 rounded-xl hover:border-purple-500 transition-colors"
+                            className="p-4 border-2 border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 rounded-xl hover:border-purple-500 transition-colors"
                           >
                             <div className="text-center">
                               <div className={`w-12 h-8 mx-auto mb-2 rounded ${
                                 theme === 'Light' ? 'bg-white border border-gray-300' : 
                                 theme === 'Dark' ? 'bg-gray-800' : 'bg-gradient-to-r from-white to-gray-800'
                               }`}></div>
-                              <span className="text-sm font-medium">{theme}</span>
+                              <span className="text-sm font-medium text-gray-900 dark:text-white">{theme}</span>
                             </div>
                           </button>
                         ))}
@@ -251,8 +251,8 @@ const Settings = () => {
                     </div>
 
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Language</h3>
-                      <select className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Language</h3>
+                      <select className="w-full px-4 py-3 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 text-gray-900 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent">
                         <option>English</option>
                         <option>Spanish</option>
                         <option>French</option>
