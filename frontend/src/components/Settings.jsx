@@ -267,38 +267,38 @@ const Settings = () => {
               {/* Support */}
               {activeTab === 'support' && (
                 <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Help & Support</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Help & Support</h2>
                   
                   <div className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <a href="#" className="p-6 border border-gray-200 rounded-xl hover:border-purple-500 transition-colors group">
+                      <a href="#" className="p-6 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 rounded-xl hover:border-purple-500 transition-colors group">
                         <div className="flex items-center space-x-3 mb-3">
-                          <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center group-hover:bg-purple-200 transition-colors">
-                            <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center group-hover:bg-purple-200 dark:group-hover:bg-purple-900/50 transition-colors">
+                            <svg className="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                             </svg>
                           </div>
-                          <h3 className="font-semibold text-gray-900">Help Center</h3>
+                          <h3 className="font-semibold text-gray-900 dark:text-white">Help Center</h3>
                         </div>
-                        <p className="text-gray-600">Find answers to common questions and tutorials</p>
+                        <p className="text-gray-600 dark:text-gray-400">Find answers to common questions and tutorials</p>
                       </a>
 
-                      <a href="#" className="p-6 border border-gray-200 rounded-xl hover:border-purple-500 transition-colors group">
+                      <a href="#" className="p-6 border border-gray-200 dark:border-dark-600 bg-white dark:bg-dark-700 rounded-xl hover:border-purple-500 transition-colors group">
                         <div className="flex items-center space-x-3 mb-3">
-                          <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center group-hover:bg-purple-200 transition-colors">
-                            <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center group-hover:bg-purple-200 dark:group-hover:bg-purple-900/50 transition-colors">
+                            <svg className="w-5 h-5 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
                           </div>
-                          <h3 className="font-semibold text-gray-900">Contact Support</h3>
+                          <h3 className="font-semibold text-gray-900 dark:text-white">Contact Support</h3>
                         </div>
-                        <p className="text-gray-600">Get in touch with our support team</p>
+                        <p className="text-gray-600 dark:text-gray-400">Get in touch with our support team</p>
                       </a>
                     </div>
 
-                    <div className="border-t border-gray-200 pt-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">App Information</h3>
-                      <div className="space-y-3 text-sm text-gray-600">
+                    <div className="border-t border-gray-200 dark:border-dark-600 pt-6">
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">App Information</h3>
+                      <div className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
                         <div className="flex justify-between">
                           <span>Version</span>
                           <span>2.1.0</span>
@@ -309,11 +309,11 @@ const Settings = () => {
                         </div>
                         <div className="flex justify-between">
                           <span>Terms of Service</span>
-                          <a href="#" className="text-purple-600 hover:text-purple-700">View</a>
+                          <a href="#" className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300">View</a>
                         </div>
                         <div className="flex justify-between">
                           <span>Privacy Policy</span>
-                          <a href="#" className="text-purple-600 hover:text-purple-700">View</a>
+                          <a href="#" className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300">View</a>
                         </div>
                       </div>
                     </div>
