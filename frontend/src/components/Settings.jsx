@@ -187,19 +187,19 @@ const Settings = () => {
               {/* Privacy */}
               {activeTab === 'privacy' && (
                 <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Privacy Settings</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Privacy Settings</h2>
                   
                   <div className="space-y-6">
                     {Object.entries(privacy).map(([key, value]) => (
-                      <div key={key} className="flex items-center justify-between py-3 border-b border-gray-100">
+                      <div key={key} className="flex items-center justify-between py-3 border-b border-gray-100 dark:border-dark-600">
                         <div>
-                          <h3 className="text-base font-medium text-gray-900">
+                          <h3 className="text-base font-medium text-gray-900 dark:text-white">
                             {key === 'profilePublic' && 'Public Profile'}
                             {key === 'showEmail' && 'Show Email'}
                             {key === 'allowMessages' && 'Allow Messages'}
                             {key === 'showOnline' && 'Show Online Status'}
                           </h3>
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
                             {key === 'profilePublic' && 'Make your profile visible to everyone'}
                             {key === 'showEmail' && 'Display your email address on your profile'}
                             {key === 'allowMessages' && 'Allow other users to send you messages'}
