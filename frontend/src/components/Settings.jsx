@@ -33,18 +33,18 @@ const Settings = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20 md:pt-24 pb-24 md:pb-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-dark-900 pt-20 md:pt-24 pb-24 md:pb-8 transition-colors duration-200">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Settings</h1>
-          <p className="text-gray-600">Manage your account preferences and privacy settings</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">Settings</h1>
+          <p className="text-gray-600 dark:text-gray-400">Manage your account preferences and privacy settings</p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar */}
           <div className="lg:w-64 flex-shrink-0">
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-2">
+            <div className="bg-white dark:bg-dark-800 rounded-2xl shadow-sm border border-gray-100 dark:border-dark-700 p-2">
               <nav className="space-y-1">
                 {tabs.map((tab) => (
                   <button
@@ -53,7 +53,7 @@ const Settings = () => {
                     className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all ${
                       activeTab === tab.id
                         ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
-                        : 'text-gray-600 hover:text-purple-600 hover:bg-purple-50'
+                        : 'text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-dark-700'
                     }`}
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,7 +68,7 @@ const Settings = () => {
 
           {/* Main Content */}
           <div className="flex-1">
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100">
+            <div className="bg-white dark:bg-dark-800 rounded-2xl shadow-sm border border-gray-100 dark:border-dark-700">
               
               {/* Account Settings */}
               {activeTab === 'account' && (
