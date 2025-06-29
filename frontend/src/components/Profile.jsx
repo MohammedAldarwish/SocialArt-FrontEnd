@@ -47,16 +47,9 @@ const Profile = () => {
     setShowLogin(true);
   };
 
-  // Settings modal handlers
+  // Theme handler
   const handleThemeChange = (e) => {
-    setSettings((prev) => ({ ...prev, theme: e.target.value }));
     setTheme(e.target.value);
-  };
-  const handlePrivacyChange = (e) => {
-    setSettings((prev) => ({ ...prev, privacy: e.target.value }));
-  };
-  const handleNotificationsChange = (e) => {
-    setSettings((prev) => ({ ...prev, notifications: e.target.checked }));
   };
 
   // Show login/register forms if not logged in
