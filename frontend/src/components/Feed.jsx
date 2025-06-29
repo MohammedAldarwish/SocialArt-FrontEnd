@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import PostCard from "./PostCard";
+import { SkeletonFeed } from "./Skeleton";
+import { useAppState } from "./AppStateContext";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { userPreferences } = useAppState();
 
   // Mock data for the social feed
   const mockPosts = [
@@ -167,36 +171,65 @@ const Feed = () => {
   ];
 
   useEffect(() => {
-    // Simulate loading
-    setTimeout(() => {
-      setPosts(mockPosts);
-      setLoading(false);
-    }, 1000);
-  }, []);
+    const loadPosts = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Simulate API call with variable delay based on user preferences
+        const delay = userPreferences?.showAnimations ? 800 : 400;
+
+        await new Promise((resolve) => setTimeout(resolve, delay));
+
+        setPosts(mockPosts);
+      } catch (err) {
+        setError("Failed to load posts. Please try again.");
+        console.error("Error loading posts:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPosts();
+  }, [userPreferences?.showAnimations]);
 
   if (loading) {
     return (
-      <div className="max-w-lg mx-auto pt-20 md:pt-24 pb-20 md:pb-8">
-        <div className="space-y-6">
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="bg-white dark:bg-dark-800 rounded-2xl shadow-sm border border-gray-100 dark:border-dark-700 p-4 animate-pulse transition-colors duration-200"
+      <div className="max-w-lg mx-auto pt-20 md:pt-24 pb-20 md:pb-8 px-4">
+        <SkeletonFeed count={3} />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-lg mx-auto pt-20 md:pt-24 pb-20 md:pb-8 px-4">
+        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-6 text-center">
+          <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg
+              className="w-8 h-8 text-red-600 dark:text-red-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-gray-200 dark:bg-dark-600 rounded-full"></div>
-                <div className="flex-1">
-                  <div className="h-4 bg-gray-200 dark:bg-dark-600 rounded w-1/3 mb-2"></div>
-                  <div className="h-3 bg-gray-200 dark:bg-dark-600 rounded w-1/4"></div>
-                </div>
-              </div>
-              <div className="h-80 bg-gray-200 dark:bg-dark-600 rounded-xl mb-4"></div>
-              <div className="space-y-2">
-                <div className="h-4 bg-gray-200 dark:bg-dark-600 rounded w-3/4"></div>
-                <div className="h-3 bg-gray-200 dark:bg-dark-600 rounded w-full"></div>
-              </div>
-            </div>
-          ))}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+              />
+            </svg>
+          </div>
+          <h3 className="text-lg font-semibold text-red-900 dark:text-red-100 mb-2">
+            Unable to load posts
+          </h3>
+          <p className="text-red-700 dark:text-red-300 mb-4">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl font-medium transition-colors"
+          >
+            Try Again
+          </button>
         </div>
       </div>
     );
@@ -234,6 +267,7 @@ const Feed = () => {
                   src={post.artistAvatar}
                   alt={post.artistName}
                   className="w-full h-full rounded-full object-cover border-2 border-white dark:border-dark-800"
+                  loading="lazy"
                 />
               </div>
               <p className="text-xs text-gray-600 dark:text-gray-300 truncate w-16">

@@ -1,9 +1,15 @@
 import React, { useState } from "react";
+import { useLazyImage } from "../hooks/usePerformance";
+import { Skeleton } from "./Skeleton";
 
 const PostCard = ({ post }) => {
   const [liked, setLiked] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [comment, setComment] = useState("");
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Lazy load the main post image
+  const [imageSrc, setImageRef] = useLazyImage(post.image);
 
   const handleLike = () => {
     setLiked(!liked);
@@ -17,6 +23,10 @@ const PostCard = ({ post }) => {
     }
   };
 
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+  };
+
   return (
     <div className="bg-white dark:bg-dark-800 rounded-2xl shadow-sm border border-gray-100 dark:border-dark-700 overflow-hidden transition-colors duration-200">
       {/* Post Header */}
@@ -26,6 +36,7 @@ const PostCard = ({ post }) => {
             src={post.artistAvatar}
             alt={post.artistName}
             className="w-10 h-10 rounded-full object-cover"
+            loading="lazy"
           />
           <div>
             <h3 className="font-semibold text-gray-900 dark:text-white">
@@ -54,12 +65,20 @@ const PostCard = ({ post }) => {
         </button>
       </div>
 
-      {/* Post Image */}
+      {/* Post Image with Lazy Loading */}
       <div className="relative">
+        {!imageLoaded && (
+          <div className="w-full h-80 bg-gray-200 dark:bg-dark-600 animate-pulse" />
+        )}
         <img
-          src={post.image}
+          ref={setImageRef}
+          src={imageSrc}
           alt={post.title}
-          className="w-full h-80 object-cover"
+          className={`w-full h-80 object-cover transition-opacity duration-300 ${
+            imageLoaded ? "opacity-100" : "opacity-0"
+          }`}
+          onLoad={handleImageLoad}
+          loading="lazy"
         />
         <div className="absolute top-4 right-4">
           <span className="bg-black/60 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
@@ -174,6 +193,7 @@ const PostCard = ({ post }) => {
                   src={topComment.avatar}
                   alt={topComment.username}
                   className="w-6 h-6 rounded-full object-cover"
+                  loading="lazy"
                 />
                 <div className="flex-1">
                   <p className="text-sm">
@@ -200,71 +220,29 @@ const PostCard = ({ post }) => {
 
         {/* Comments Section */}
         {showComments && (
-          <div className="border-t border-gray-100 dark:border-dark-700 pt-3 mt-3">
-            <div className="space-y-3 mb-3 max-h-40 overflow-y-auto">
-              {post.topComments &&
-                post.topComments.map((topComment, index) => (
-                  <div key={index} className="flex items-start space-x-2">
-                    <img
-                      src={topComment.avatar}
-                      alt={topComment.username}
-                      className="w-6 h-6 rounded-full object-cover"
-                    />
-                    <div className="flex-1">
-                      <p className="text-sm">
-                        <span className="font-medium text-gray-900 dark:text-white">
-                          {topComment.username}
-                        </span>
-                        <span className="text-gray-700 dark:text-gray-300 ml-2">
-                          {topComment.text}
-                        </span>
-                      </p>
-                      <div className="flex items-center space-x-4 mt-1">
-                        <span className="text-xs text-gray-500 dark:text-gray-400">
-                          2h
-                        </span>
-                        <button className="text-xs text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
-                          Like
-                        </button>
-                        <button className="text-xs text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
-                          Reply
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-            </div>
-
-            {/* Add Comment */}
-            <form
-              onSubmit={handleComment}
-              className="flex items-center space-x-2"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1695927521717-a0ad39d93505"
-                alt="Your avatar"
-                className="w-6 h-6 rounded-full object-cover"
-              />
-              <input
-                type="text"
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                placeholder="Add a comment..."
-                className="flex-1 text-sm bg-gray-50 dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-full px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors"
-              />
-              <button
-                type="submit"
-                disabled={!comment.trim()}
-                className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 disabled:text-gray-400 dark:disabled:text-gray-500 transition-colors"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+          <div className="border-t border-gray-100 dark:border-dark-700 pt-3">
+            <form onSubmit={handleComment} className="mb-3">
+              <div className="flex items-center space-x-2">
+                <img
+                  src="https://images.unsplash.com/photo-1695927521717-a0ad39d93505"
+                  alt="Your avatar"
+                  className="w-8 h-8 rounded-full object-cover"
+                />
+                <input
+                  type="text"
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  placeholder="Add a comment..."
+                  className="flex-1 bg-gray-50 dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                />
+                <button
+                  type="submit"
+                  disabled={!comment.trim()}
+                  className="text-purple-600 dark:text-purple-400 font-medium text-sm disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                </svg>
-              </button>
+                  Post
+                </button>
+              </div>
             </form>
           </div>
         )}

@@ -1,22 +1,31 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from './components/ThemeContext';
+import { AppStateProvider } from './components/AppStateContext';
 import Navbar from './components/Navbar';
-import Feed from './components/Feed';
-import Messages from './components/Messages';
-import Chat from './components/Chat';
-import Courses from './components/Courses';
-import Settings from './components/Settings';
-import Profile from './components/Profile';
-import AdminLogin from './components/AdminLogin';
-import AdminPanel from './components/AdminPanel';
+import LoadingSpinner from './components/LoadingSpinner';
+import ErrorBoundary from './components/ErrorBoundary';
+import ScrollToTop from './components/ScrollToTop';
+
+// Lazy load components for better performance
+const Feed = lazy(() => import('./components/Feed'));
+const Messages = lazy(() => import('./components/Messages'));
+const Chat = lazy(() => import('./components/Chat'));
+const Courses = lazy(() => import('./components/Courses'));
+const Settings = lazy(() => import('./components/Settings'));
+const Profile = lazy(() => import('./components/Profile'));
+const AdminLogin = lazy(() => import('./components/AdminLogin'));
+const AdminPanel = lazy(() => import('./components/AdminPanel'));
+const Explore = lazy(() => import('./components/Explore'));
 
 const Home = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-900 transition-colors duration-200">
       <Navbar />
-      <Feed />
+      <Suspense fallback={<LoadingSpinner />}>
+        <Feed />
+      </Suspense>
     </div>
   );
 };
@@ -25,14 +34,18 @@ const Home = () => {
 const MessagesPage = () => (
   <div className="min-h-screen bg-gray-50 dark:bg-dark-900 transition-colors duration-200">
     <Navbar />
-    <Messages />
+    <Suspense fallback={<LoadingSpinner />}>
+      <Messages />
+    </Suspense>
   </div>
 );
 
 // Individual Chat Page
 const ChatPage = () => (
   <div className="min-h-screen bg-gray-50 dark:bg-dark-900 transition-colors duration-200">
-    <Chat />
+    <Suspense fallback={<LoadingSpinner />}>
+      <Chat />
+    </Suspense>
   </div>
 );
 
@@ -40,7 +53,9 @@ const ChatPage = () => (
 const CoursesPage = () => (
   <div className="min-h-screen bg-gray-50 dark:bg-dark-900 transition-colors duration-200">
     <Navbar />
-    <Courses />
+    <Suspense fallback={<LoadingSpinner />}>
+      <Courses />
+    </Suspense>
   </div>
 );
 
@@ -48,7 +63,9 @@ const CoursesPage = () => (
 const SettingsPage = () => (
   <div className="min-h-screen bg-gray-50 dark:bg-dark-900 transition-colors duration-200">
     <Navbar />
-    <Settings />
+    <Suspense fallback={<LoadingSpinner />}>
+      <Settings />
+    </Suspense>
   </div>
 );
 
@@ -56,26 +73,19 @@ const SettingsPage = () => (
 const ProfilePage = () => (
   <div className="min-h-screen bg-gray-50 dark:bg-dark-900 transition-colors duration-200">
     <Navbar />
-    <Profile />
+    <Suspense fallback={<LoadingSpinner />}>
+      <Profile />
+    </Suspense>
   </div>
 );
 
-// Placeholder components for other routes
-const Explore = () => (
+// Explore Page
+const ExplorePage = () => (
   <div className="min-h-screen bg-gray-50 dark:bg-dark-900 transition-colors duration-200">
     <Navbar />
-    <div className="flex items-center justify-center pt-32 pb-24">
-      <div className="text-center">
-        <div className="w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-          </svg>
-        </div>
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Explore</h1>
-        <p className="text-gray-600 dark:text-gray-300">Discover amazing artwork from around the world</p>
-        <p className="text-sm text-purple-600 dark:text-purple-400 mt-4">Coming soon...</p>
-      </div>
-    </div>
+    <Suspense fallback={<LoadingSpinner />}>
+      <Explore />
+    </Suspense>
   </div>
 );
 
@@ -117,25 +127,30 @@ const Notifications = () => (
 
 function App() {
   return (
-    <ThemeProvider>
-      <div className="App">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route path="/courses" element={<CoursesPage />} />
-            <Route path="/messages" element={<MessagesPage />} />
-            <Route path="/chat/:id" element={<ChatPage />} />
-            <Route path="/upload" element={<Upload />} />
-            <Route path="/notifications" element={<Notifications />} />
-            <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/admin" element={<AdminLogin />} />
-            <Route path="/admin/dashboard" element={<AdminPanel />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <AppStateProvider>
+          <div className="App">
+            <BrowserRouter>
+              <ScrollToTop />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/explore" element={<ExplorePage />} />
+                <Route path="/courses" element={<CoursesPage />} />
+                <Route path="/messages" element={<MessagesPage />} />
+                <Route path="/chat/:id" element={<ChatPage />} />
+                <Route path="/upload" element={<Upload />} />
+                <Route path="/notifications" element={<Notifications />} />
+                <Route path="/settings" element={<SettingsPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/admin" element={<AdminLogin />} />
+                <Route path="/admin/dashboard" element={<AdminPanel />} />
+              </Routes>
+            </BrowserRouter>
+          </div>
+        </AppStateProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
 

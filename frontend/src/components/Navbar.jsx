@@ -219,13 +219,13 @@ const Navbar = () => {
         </Link>
 
         {/* Profile Button (on non-profile pages) or Settings Button (on profile page) */}
-        {location.pathname === '/profile' ? (
+        {location.pathname === "/profile" ? (
           // Settings button when on profile page
           <button
             className="flex items-center justify-center w-12 h-12 rounded-full bg-white/80 dark:bg-dark-800/80 backdrop-blur-md shadow-lg border border-gray-100 dark:border-dark-700 transition-all text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400"
             onClick={() => {
               // Handle settings action here
-              console.log('Settings clicked from floating button');
+              console.log("Settings clicked from floating button");
             }}
           >
             <svg
@@ -395,7 +395,6 @@ const Navbar = () => {
             </div>
           </Link>
         </div>
-
       </nav>
     </>
   );
