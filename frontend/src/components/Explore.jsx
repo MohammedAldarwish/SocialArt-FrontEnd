@@ -597,19 +597,19 @@ const Explore = () => {
                 </div>
 
                 {/* Post Info */}
-                <div className="p-3">
-                  <div className="flex items-center space-x-2 mb-2">
+                <div className="p-2 sm:p-3">
+                  <div className="flex items-center space-x-1 sm:space-x-2 mb-1 sm:mb-2">
                     <img
                       src={post.artistAvatar}
                       alt={post.artistName}
-                      className="w-6 h-6 rounded-full object-cover"
+                      className="w-4 h-4 sm:w-6 sm:h-6 rounded-full object-cover"
                       loading="lazy"
                     />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                      <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white truncate">
                         {post.artistName}
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 truncate hidden sm:block">
                         {post.username}
                       </p>
                     </div>
@@ -617,11 +617,11 @@ const Explore = () => {
 
                   {/* Category Badge */}
                   <div className="flex items-center justify-between">
-                    <span className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 px-2 py-1 rounded-full">
+                    <span className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 px-1 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs">
                       {post.category}
                     </span>
                     {post.featured && (
-                      <span className="text-xs bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 px-2 py-1 rounded-full">
+                      <span className="text-xs bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 px-1 sm:px-2 py-0.5 sm:py-1 rounded-full hidden sm:inline">
                         ⭐ Featured
                       </span>
                     )}
